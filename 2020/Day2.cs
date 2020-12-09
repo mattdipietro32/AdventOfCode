@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text.RegularExpressions;
+using System.Threading.Channels;
 
 namespace AdventOfCode._2020.Inputs
 {
@@ -24,29 +25,29 @@ namespace AdventOfCode._2020.Inputs
 
         public static void PrintContents()
         {
-            foreach (var pw in passwords)
-            {
-                Console.WriteLine($"Min: {pw.Min} Max: {pw.Max} Value: {pw.Value} PW: {pw.PW}");
-            }
+            passwords.ForEach(pw => { Console.Write(pw); });
         }
 
-        public static int findMatchCount()
+        //Solves for Day 2 - Part 1
+        public static int ValidatePart1()
         {
-            int Totalcount = 0;
+            int totalCount = 0;
             foreach (var password in passwords)
             {
                 int count = password.PW.Count(p => p == password.Value);
                 if (count >= password.Min && count <= password.Max)
                 {
-                    Totalcount += 1;
+                    totalCount += 1;
                 }
             }
-            return Totalcount;
+            return totalCount;
         }
 
-
+        public static int ValidatePart2()
+        {
+            return 0;
+        }
     }
-
 
     public class Password
     {
@@ -56,25 +57,18 @@ namespace AdventOfCode._2020.Inputs
         public string PW { get; private set; }
 
         public Password(string input)
-        {    
-            //gets the min and max range from the input value
-            Regex minMaxRegex = new Regex(@"\d?\d-\d\d?");
-            Match m = minMaxRegex.Match(input);
-            string[] a = m.ToString().Split("-");
-            Min = Int32.Parse(a[0]);
-            Max = Int32.Parse(a[1]);
+        { 
+            var matches  = new Regex(@"(\d*)-(\d*) (\w): (.*)").Match(input);
+            Min = matches.GetGroupValue<int>(1);
+            Max = matches.GetGroupValue<int>(2);
+            Value = matches.GetGroupValue<char>(3);
+            PW = matches.GetGroupValue<string>(4);
             
-            //Get the character to test against. 
-            //EX: "7-10 v: gpvgmqkvxgbvs" would return v
-            Regex valueRegex = new Regex(@" .:");
-            Match vm = valueRegex.Match(input);
-            Value = Convert.ToChar(vm.ToString().TrimEnd(':').TrimStart(' '));
-            
-            //Get the password to check, and then trip off the ": "
-            //EX: "7-10 v: gpvgmqkvxgbvs" would return gpvgmqkvxgbvs
-            Regex pwRegex = new Regex(@"\:\s(.*)");
-            Match pwm = pwRegex.Match(input);
-            PW = pwm.ToString().TrimStart(':').Trim();
+        }
+
+        public override string ToString()
+        {
+            return $"_________\n Min: {this.Min}\n Max: {this.Max}\n Value: {this.Value}\n PW: {this.PW}\n_________";
         }
         
     }
