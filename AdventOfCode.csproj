@@ -5,4 +5,22 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Content Include="obj\AdventOfCode.csproj.nuget.dgspec.json" />
+    <Content Include="obj\AdventOfCode.csproj.nuget.g.props" />
+    <Content Include="obj\AdventOfCode.csproj.nuget.g.targets" />
+    <Content Include="obj\Debug\netcoreapp3.1\AdventOfCode.AssemblyInfoInputs.cache" />
+    <Content Include="obj\Debug\netcoreapp3.1\AdventOfCode.assets.cache" />
+    <Content Include="obj\Debug\netcoreapp3.1\AdventOfCode.csproj.CoreCompileInputs.cache" />
+    <Content Include="obj\Debug\netcoreapp3.1\AdventOfCode.csproj.FileListAbsolute.txt" />
+    <Content Include="obj\Debug\netcoreapp3.1\AdventOfCode.csprojAssemblyReference.cache" />
+    <Content Include="obj\Debug\netcoreapp3.1\AdventOfCode.dll" />
+    <Content Include="obj\Debug\netcoreapp3.1\AdventOfCode.genruntimeconfig.cache" />
+    <Content Include="obj\Debug\netcoreapp3.1\AdventOfCode.pdb" />
+    <Content Include="obj\Debug\netcoreapp3.1\apphost.exe" />
+    <Content Include="obj\project.assets.json" />
+    <Content Include="obj\project.nuget.cache" />
+    <Content Include="obj\project.packagespec.json" />
+  </ItemGroup>
+
 </Project>

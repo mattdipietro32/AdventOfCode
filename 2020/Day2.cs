@@ -43,10 +43,11 @@ namespace AdventOfCode._2020.Inputs
             return totalCount;
         }
 
-        public static int ValidatePart2()
-        {
-            return 0;
-        }
+        public int ValidatePart2() =>
+            passwords.Count(x => IsPassWordValid2(x));
+
+        public bool IsPassWordValid2(Password pw) =>
+            pw.PW[pw.Min - 1] == pw.Value ^ pw.PW[pw.Max - 1] == pw.Value;
     }
 
     public class Password
